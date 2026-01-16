@@ -1,0 +1,148 @@
+/* Import Google Fonts - Montserrat & Open Sans */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+/* Custom Theme Variables */
+@theme {
+  /* Primary Colors */
+  --color-primary: #BD9E72;
+  --color-primary-hover: #a88a5f;
+  --color-secondary: #3A9C9C;
+  --color-secondary-hover: #2f8585;
+
+  /* Background Colors */
+  --color-bg-primary: #1E293B;
+  --color-bg-secondary: #242837;
+  --color-bg-sidebar: #1E293B;
+  --color-bg-card: #2a2f42;
+  --color-bg-card-hover: #323849;
+
+  /* Text Colors */
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #94A3B8;
+  --color-text-muted: #6b7280;
+
+  /* Neutral Colors */
+  --color-black: #1E293B;
+  --color-white: #FFFFFF;
+  --color-gray: #94A3B8;
+
+  /* Status Colors */
+  --color-info: #1A73E8;
+  --color-success: #2DD55B;
+  --color-warning: #FFC409;
+  --color-danger: #DC4C64;
+
+  /* Border */
+  --color-border: #374151;
+  --color-accent: #2dd4bf;
+  --color-accent-hover: #14b8a6;
+
+  /* Spacing */
+  --sidebar-width: 70px;
+  --header-height: 60px;
+  --content-padding: 24px;
+  --card-gap: 16px;
+
+  /* Max Width */
+  --max-width-desktop: 1380px;
+  --max-width-mobile: 375px;
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 20px;
+
+  /* Font Family */
+  --font-sans: 'Montserrat', 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Base Styles */
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply font-sans bg-bg-primary text-text-primary leading-relaxed min-h-screen;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ul,
+  ol {
+    list-style: none;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+
+  input {
+    font-family: inherit;
+    border: none;
+    outline: none;
+  }
+
+  /* Typography Scale */
+  h1 {
+    @apply text-2xl font-bold;
+  }
+
+  /* 24px */
+  h2 {
+    @apply text-xl font-semibold;
+  }
+
+  /* 20px */
+  h3 {
+    @apply text-base font-semibold;
+  }
+
+  /* 16px */
+  h4 {
+    @apply text-sm font-semibold;
+  }
+
+  /* 14px */
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-bg-secondary;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-border rounded;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-text-muted;
+}
