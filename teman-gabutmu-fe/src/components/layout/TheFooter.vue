@@ -4,7 +4,7 @@
       <!-- Brand Section -->
       <div class="flex flex-col gap-4">
         <div class="flex items-center gap-3">
-          <img src="@/assets/images/logo-placeholder.svg" alt="Teman Gabutmu" class="w-10 h-10" />
+          <img src="@/assets/images/logo.png" alt="Teman Gabutmu" class="w-10 h-10" />
           <span class="font-semibold text-text-primary">Teman Gabutmu</span>
         </div>
         <p class="text-[0.8rem] text-text-secondary leading-relaxed max-w-[300px]">

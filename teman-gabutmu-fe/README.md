@@ -1,27 +1,32 @@
-# teman-gabutmu-fe
+# Teman Gabutmu
 
-This template should help get you started developing with Vue 3 in Vite.
+Platform top-up game terlengkap di Indonesia. Aplikasi web untuk melakukan pembelian diamond, voucher, dan item game dengan mudah dan aman.
 
-## Recommended IDE Setup
+## Tech Stack
 
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+- Vue 3 + TypeScript
+- Vite
+- Pinia (State Management)
+- Vue Router
+- Tailwind CSS
+- Lucide Vue Next (Icons)
 
-## Recommended Browser Setup
+## Features
 
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
+- 🏠 **Home** - Menampilkan banner promo, game populer, dan daftar game
+- 🎮 **Game Detail** - Halaman top-up dengan pilihan nominal dan metode pembayaran
+- 🎁 **Promo** - Daftar promo dengan filter kategori game
+- 🏆 **Hadiahku** - Halaman hadiah user
+- 📋 **Transaksi** - Riwayat transaksi
+- 🔐 **Authentication** - Login/Register dengan badge system
 
-## Type Support for `.vue` Imports in TS
+## UI/UX Features
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
+- Responsive design (Mobile, Tablet, Desktop)
+- Bottom navigation untuk mobile
+- Skeleton loading untuk semua halaman
+- Dark theme
+- Badge system untuk user (3 level badge)
 
 ## Project Setup
 
@@ -29,20 +34,42 @@ See [Vite Configuration Reference](https://vite.dev/config/).
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Development
 
 ```sh
 npm run dev
 ```
 
-### Type-Check, Compile and Minify for Production
+### Build for Production
 
 ```sh
 npm run build
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+### Lint
 
 ```sh
 npm run lint
 ```
+
+## Project Structure
+
+```
+src/
+├── assets/          # Images, CSS
+├── components/
+│   ├── auth/        # LoginModal, UserDropdown
+│   ├── game/        # GameDetailSkeleton
+│   ├── home/        # HeroBanner, GameCard, PopularSection, etc.
+│   ├── layout/      # TheHeader, TheSidebar, TheFooter
+│   ├── transaction/ # ConfirmationModal
+│   └── ui/          # SkeletonLoader
+├── layouts/         # MainLayout
+├── router/          # Vue Router config
+├── stores/          # Pinia stores (auth)
+└── views/           # Page components
+```
+
+## Recommended IDE Setup
+
+[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
