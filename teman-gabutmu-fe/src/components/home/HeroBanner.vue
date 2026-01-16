@@ -1,38 +1,103 @@
 <template>
-    <div
-        class="rounded-[20px] p-8 relative overflow-hidden min-h-[180px] mb-8 bg-gradient-to-br from-[#e74c3c] via-[#c0392b] to-[#e67e22]">
-        <div class="flex justify-between items-center relative z-10">
-            <div class="flex flex-col gap-2">
-                <span
-                    class="bg-white/20 text-white px-3 py-1 rounded-md text-[0.7rem] font-semibold w-fit">VOUCHER</span>
-                <h1 class="text-3xl font-bold text-white drop-shadow-lg">VOUCHER TOP UP</h1>
-                <p class="text-[0.9rem] text-white/90 mb-2">Lorem ipsum dolor sit amet</p>
-                <button
-                    class="bg-bg-primary text-white px-6 py-3 rounded-[10px] font-semibold text-[0.9rem] w-fit shadow-lg hover:-translate-y-0.5 hover:shadow-xl transition-all duration-150">
-                    Top up Sekarang
-                </button>
-            </div>
-            <div class="relative">
-                <!-- Placeholder for mascot/decoration image -->
-                <div class="w-[150px] h-[150px] flex items-center justify-center text-white/50">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                        <circle cx="8.5" cy="8.5" r="1.5" />
-                        <polyline points="21 15 16 10 5 21" />
-                    </svg>
-                </div>
-            </div>
-        </div>
+  <div class="relative rounded-[10px] md:rounded-[20px] mb-4 md:mb-[37px]">
+    <!-- Skeleton Loading -->
+    <template v-if="isLoading">
+      <div class="w-full h-[130px] sm:h-[180px] md:h-[280px] lg:h-[367px] bg-[#2A3441] rounded-[10px] md:rounded-[20px] animate-pulse"></div>
+      <div class="absolute bottom-2 md:bottom-4 left-1/2 -translate-x-1/2 flex gap-[9px] md:gap-2">
+        <div class="w-3 md:w-6 h-1 md:h-2 bg-white/20 rounded-full"></div>
+        <div class="w-1 md:w-2 h-1 md:h-2 bg-white/20 rounded-full"></div>
+        <div class="w-1 md:w-2 h-1 md:h-2 bg-white/20 rounded-full"></div>
+      </div>
+    </template>
 
-        <!-- Carousel dots -->
-        <div class="flex justify-center gap-2 mt-4">
-            <span class="w-6 h-2 rounded bg-white cursor-pointer transition-all duration-150"></span>
-            <span class="w-2 h-2 rounded-full bg-white/40 cursor-pointer transition-all duration-150"></span>
-            <span class="w-2 h-2 rounded-full bg-white/40 cursor-pointer transition-all duration-150"></span>
+    <!-- Actual Content -->
+    <template v-else>
+      <div class="relative overflow-hidden rounded-[10px] md:rounded-[20px]">
+        <div
+          class="flex transition-transform duration-500 ease-in-out"
+          :style="{ transform: `translateX(-${currentSlide * 100}%)` }"
+        >
+          <div
+            v-for="(slideImg, index) in slides"
+            :key="index"
+            class="w-full flex-shrink-0 min-w-full"
+          >
+            <img
+              :src="slideImg"
+              :alt="`Banner ${index + 1}`"
+              class="w-full h-[130px] sm:h-[180px] md:h-[280px] lg:h-[367px] object-cover object-center"
+            />
+          </div>
         </div>
-    </div>
+      </div>
+
+      <!-- Carousel Dots -->
+      <div class="absolute bottom-2 md:bottom-4 left-1/2 -translate-x-1/2 flex gap-[9px] md:gap-2 z-10">
+        <button
+          v-for="(_, index) in slides"
+          :key="index"
+          @click="goToSlide(index)"
+          :class="[
+            'h-1 md:h-2 rounded-full transition-all duration-300 cursor-pointer',
+            currentSlide === index
+              ? 'w-3 md:w-6 bg-white'
+              : 'w-1 md:w-2 bg-white/40 hover:bg-white/60'
+          ]"
+        ></button>
+      </div>
+    </template>
+  </div>
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, onUnmounted } from 'vue'
+import bannerImg from '@/assets/images/banner-section.png'
+
+const isLoading = ref(true)
+const slides = ref<string[]>([])
+const currentSlide = ref(0)
+let intervalId: number | null = null
+
+const goToSlide = (index: number) => {
+  currentSlide.value = index
+}
+
+const nextSlide = () => {
+  currentSlide.value = (currentSlide.value + 1) % slides.value.length
+}
+
+const fetchBanners = async () => {
+  isLoading.value = true
+  // Simulate API call
+  await new Promise((resolve) => setTimeout(resolve, 1000))
+  slides.value = [bannerImg, bannerImg, bannerImg]
+  isLoading.value = false
+}
+
+onMounted(() => {
+  fetchBanners().then(() => {
+    intervalId = window.setInterval(nextSlide, 4000)
+  })
+})
+
+onUnmounted(() => {
+  if (intervalId) {
+    clearInterval(intervalId)
+  }
+})
 </script>
+
+<style scoped>
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.animate-pulse {
+  animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+</style>

@@ -2,13 +2,8 @@
   <section class="mb-10">
     <h2 class="text-base font-semibold text-text-primary mb-4 uppercase tracking-wide">Top up Lainnya</h2>
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-      <GameCard 
-        v-for="item in topupItems" 
-        :key="item.id"
-        :title="item.title"
-        :image="item.image"
-        action-text="Beli Sekarang"
-      />
+      <GameCard v-for="item in topupItems" :key="item.id" :game-id="item.id" :title="item.title" :image="item.image"
+        action-text="Beli Sekarang" />
     </div>
   </section>
 </template>

@@ -6,9 +6,9 @@
 /* Custom Theme Variables */
 @theme {
   /* Primary Colors */
-  --color-primary: #BD9E72;
-  --color-primary-hover: #a88a5f;
-  --color-secondary: #3A9C9C;
+  --color-primary: #FF8130;
+  --color-primary-hover: #FF8130;
+  --color-secondary: #00929D;
   --color-secondary-hover: #2f8585;
 
   /* Background Colors */
@@ -20,8 +20,9 @@
 
   /* Text Colors */
   --color-text-primary: #ffffff;
-  --color-text-secondary: #94A3B8;
-  --color-text-muted: #6b7280;
+  --color-text-secondary: #0AB3BF;
+  --color-text-muted: #ffffff;
+  --color-text-third: #FF8130;
 
   /* Neutral Colors */
   --color-black: #1E293B;

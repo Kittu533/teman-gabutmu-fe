@@ -1,49 +1,232 @@
 <template>
-    <aside
-        class="fixed top-0 left-0 w-[70px] h-screen bg-bg-sidebar flex flex-col items-center py-4 z-50 border-r border-border">
-        <nav class="flex flex-col gap-2 mt-12">
-            <a href="/"
-                class="w-[45px] h-[45px] flex items-center justify-center rounded-[10px] bg-primary text-bg-primary transition-all duration-150"
-                title="Home">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                    <polyline points="9 22 9 12 15 12 15 22"></polyline>
-                </svg>
-            </a>
+  <!-- Desktop Sidebar -->
+  <aside
+    class="hidden md:flex fixed top-0 left-0 w-[70px] h-screen bg-[#272B35] flex-col items-center py-4 z-50 border-r border-border"
+  >
+    <nav class="flex flex-col gap-1 mt-12">
+      <router-link
+        to="/"
+        class="relative flex flex-col items-center justify-center py-3 px-2 transition-all duration-200 w-[70px] group"
+        title="Home"
+      >
+        <div class="flex items-center justify-center mb-1 transition-all duration-200">
+          <Home :size="22" :stroke-width="2" :class="isActive('/') ? 'text-primary' : 'text-gray'" />
+        </div>
+        <span
+          :class="[
+            'text-[0.65rem] font-medium transition-all duration-200',
+            isActive('/') ? 'text-primary' : 'text-gray group-hover:text-white'
+          ]"
+          >Home</span
+        >
+        <div
+          :class="[
+            'absolute bottom-0 left-0 right-0 h-[3px] transition-all duration-300',
+            isActive('/') ? 'active-indicator' : 'hover-indicator'
+          ]"
+        ></div>
+      </router-link>
 
-            <a href="#"
-                class="w-[45px] h-[45px] flex items-center justify-center rounded-[10px] text-text-secondary hover:bg-bg-card hover:text-text-primary transition-all duration-150"
-                title="Voucher">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                    <line x1="1" y1="10" x2="23" y2="10"></line>
-                </svg>
-            </a>
+      <router-link
+        to="/transactions"
+        class="relative flex flex-col items-center justify-center py-3 px-2 transition-all duration-200 w-[70px] group"
+        title="Transaksi"
+      >
+        <div class="flex items-center justify-center mb-1 transition-all duration-200">
+          <Ticket
+            :size="22"
+            :stroke-width="2"
+            :class="isActive('/transactions') ? 'text-primary' : 'text-gray'"
+          />
+        </div>
+        <span
+          :class="[
+            'text-[0.65rem] font-medium transition-all duration-200',
+            isActive('/transactions') ? 'text-primary' : 'text-gray group-hover:text-white'
+          ]"
+          >Transaksi</span
+        >
+        <div
+          :class="[
+            'absolute bottom-0 left-0 right-0 h-[3px] transition-all duration-300',
+            isActive('/transactions') ? 'active-indicator' : 'hover-indicator'
+          ]"
+        ></div>
+      </router-link>
 
-            <a href="#"
-                class="w-[45px] h-[45px] flex items-center justify-center rounded-[10px] text-text-secondary hover:bg-bg-card hover:text-text-primary transition-all duration-150"
-                title="Promo">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
-                    <line x1="7" y1="7" x2="7.01" y2="7"></line>
-                </svg>
-            </a>
+      <router-link
+        to="/promo"
+        class="relative flex flex-col items-center justify-center py-3 px-2 transition-all duration-200 w-[70px] group"
+        title="Promo"
+      >
+        <div class="flex items-center justify-center mb-1 transition-all duration-200">
+          <Tag :size="22" :stroke-width="2" :class="isActive('/promo') ? 'text-primary' : 'text-gray'" />
+        </div>
+        <span
+          :class="[
+            'text-[0.65rem] font-medium transition-all duration-200',
+            isActive('/promo') ? 'text-primary' : 'text-gray group-hover:text-white'
+          ]"
+          >Promo</span
+        >
+        <div
+          :class="[
+            'absolute bottom-0 left-0 right-0 h-[3px] transition-all duration-300',
+            isActive('/promo') ? 'active-indicator' : 'hover-indicator'
+          ]"
+        ></div>
+      </router-link>
 
-            <a href="#"
-                class="w-[45px] h-[45px] flex items-center justify-center rounded-[10px] text-text-secondary hover:bg-bg-card hover:text-text-primary transition-all duration-150"
-                title="Riwayat">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <polyline points="12 6 12 12 16 14"></polyline>
-                </svg>
-            </a>
-        </nav>
-    </aside>
+      <router-link
+        to="/hadiahku"
+        class="relative flex flex-col items-center justify-center py-3 px-2 transition-all duration-200 w-[70px] group"
+        title="Hadiahku"
+      >
+        <div class="flex items-center justify-center mb-1 transition-all duration-200">
+          <Gift
+            :size="22"
+            :stroke-width="2"
+            :class="isActive('/hadiahku') ? 'text-primary' : 'text-gray'"
+          />
+        </div>
+        <span
+          :class="[
+            'text-[0.65rem] font-medium transition-all duration-200',
+            isActive('/hadiahku') ? 'text-primary' : 'text-gray group-hover:text-white'
+          ]"
+          >Hadiahku</span
+        >
+        <div
+          :class="[
+            'absolute bottom-0 left-0 right-0 h-[3px] transition-all duration-300',
+            isActive('/hadiahku') ? 'active-indicator' : 'hover-indicator'
+          ]"
+        ></div>
+      </router-link>
+    </nav>
+  </aside>
+
+  <!-- Mobile Bottom Navigation -->
+  <nav
+    class="md:hidden fixed bottom-0 left-0 right-0 h-[70px] bg-[#272B35] flex items-center justify-around z-50 border-t border-border safe-area-bottom"
+  >
+    <router-link
+      to="/"
+      class="flex flex-col items-center justify-center py-2 px-4 transition-all duration-200"
+    >
+      <Home
+        :size="24"
+        :stroke-width="2"
+        :class="isActive('/') ? 'text-primary' : 'text-gray-400'"
+      />
+      <span
+        :class="[
+          'text-[0.65rem] font-medium mt-1',
+          isActive('/') ? 'text-primary' : 'text-gray-400'
+        ]"
+        >Home</span
+      >
+      <div
+        v-if="isActive('/')"
+        class="w-1.5 h-1.5 rounded-full bg-primary mt-1"
+      ></div>
+    </router-link>
+
+    <router-link
+      to="/transactions"
+      class="flex flex-col items-center justify-center py-2 px-4 transition-all duration-200"
+    >
+      <Ticket
+        :size="24"
+        :stroke-width="2"
+        :class="isActive('/transactions') ? 'text-primary' : 'text-gray-400'"
+      />
+      <span
+        :class="[
+          'text-[0.65rem] font-medium mt-1',
+          isActive('/transactions') ? 'text-primary' : 'text-gray-400'
+        ]"
+        >Transaksi</span
+      >
+      <div
+        v-if="isActive('/transactions')"
+        class="w-1.5 h-1.5 rounded-full bg-primary mt-1"
+      ></div>
+    </router-link>
+
+    <router-link
+      to="/promo"
+      class="flex flex-col items-center justify-center py-2 px-4 transition-all duration-200"
+    >
+      <Tag
+        :size="24"
+        :stroke-width="2"
+        :class="isActive('/promo') ? 'text-primary' : 'text-gray-400'"
+      />
+      <span
+        :class="[
+          'text-[0.65rem] font-medium mt-1',
+          isActive('/promo') ? 'text-primary' : 'text-gray-400'
+        ]"
+        >Promo</span
+      >
+      <div
+        v-if="isActive('/promo')"
+        class="w-1.5 h-1.5 rounded-full bg-primary mt-1"
+      ></div>
+    </router-link>
+
+    <router-link
+      to="/hadiahku"
+      class="flex flex-col items-center justify-center py-2 px-4 transition-all duration-200"
+    >
+      <Gift
+        :size="24"
+        :stroke-width="2"
+        :class="isActive('/hadiahku') ? 'text-primary' : 'text-gray-400'"
+      />
+      <span
+        :class="[
+          'text-[0.65rem] font-medium mt-1',
+          isActive('/hadiahku') ? 'text-primary' : 'text-gray-400'
+        ]"
+        >Hadiahku</span
+      >
+      <div
+        v-if="isActive('/hadiahku')"
+        class="w-1.5 h-1.5 rounded-full bg-primary mt-1"
+      ></div>
+    </router-link>
+  </nav>
 </template>
 
 <script setup lang="ts">
+import { useRoute } from 'vue-router'
+import { Home, Ticket, Tag, Gift } from 'lucide-vue-next'
+
+const route = useRoute()
+
+const isActive = (path: string) => {
+  if (path === '/') {
+    return route.path === '/'
+  }
+  return route.path.startsWith(path)
+}
 </script>
+
+<style scoped>
+.active-indicator {
+  background: linear-gradient(to top, #ff8130, transparent);
+  box-shadow:
+    0 -8px 20px rgba(255, 129, 48, 0.6),
+    0 -4px 10px rgba(255, 129, 48, 0.4);
+}
+
+.group:hover .hover-indicator:not(.active-indicator) {
+  background: linear-gradient(to top, rgba(148, 163, 184, 0.3), transparent);
+}
+
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+</style>
